@@ -17,11 +17,11 @@ def main():
         st.markdown("""Los datos de este proyectos proceden de diversas fuentes públicas : 
                           [**CIMA**](https://cima.aemps.es/cima/publico/home.html), [**Drugs**](https://drugs.com), [**INE**](https://datos.gob.es/es/catalogo?publisher_display_name=Instituto+Nacional+de+Estad%C3%ADstica)""")
 
-        st.write("""**Estudio de Enfermedades con power BI**  muestra estadísticas sobre enfermedades.""")
+        st.write("""**`Estudio de Enfermedades con power BI`**  muestra estadísticas sobre enfermedades.""")
 
-        st.write("""**Predicción de  Diabetes con Machine Learnin**  calcula su probabilidad de contraer diabetes contestando una pequeña encuesta sobre sus hábitos de vida saludables con una sensibilidad del 90%.""")
+        st.write("""**`Predicción de  Diabetes con Machine Learning`**  calcula su probabilidad de contraer diabetes contestando una pequeña encuesta sobre sus hábitos de vida saludables con una sensibilidad del 90%.""")
 
-        st.write("""**Drug Analyzer**  proporciona información sobre medicamentos.""")
+        st.write("""**`Drug Analyzer`**  proporciona información sobre medicamentos.""")
 
         st.error("""Nota: toda la información proporcionada por esta app es orientativa y basada en datos públicos. Recuerde que ante cualquier duda siempre debe acudir a su médico de cabecera.""")
 
@@ -37,12 +37,6 @@ def main():
         df = pd.read_csv("../data/diabetes_012_health_indicators_BRFSS2015.csv")
         df.drop_duplicates(inplace=True)
         df=df[df['BMI']<50]
-        # iso = IsolationForest(contamination=0.09)
-        # iso.fit(df)
-        # df['anomailes_scores']=iso.decision_function(df)
-        # df['anomaly']= iso.predict(df)
-        # df.drop(df[df['anomaly']==-1].index,inplace = True)
-        # df.drop(columns=['anomaly'], inplace=True)
         # eliminamos la población con diagnóstico de prediabetes
         df.drop(df[df["Diabetes_012"] == 1].index, axis = 0, inplace= True)
         # reetiquetamos la población con diabetes como "1"
@@ -50,14 +44,8 @@ def main():
         df.drop(["PhysHlth", "MentHlth"], axis=1, inplace=True)
         # y = df_new[['Diabetes_012']]
         X = df.drop(['Diabetes_012'], axis=1)
-            # X, y = iris["data"], iris["target"]
-            # target = iris["target_names"]
+ 
         feature_names = X.columns
-
-            # df = pd.DataFrame(data = X, columns = feature_names)    
-
-        with st.expander(label = "DataFrame Diabetes", expanded = False):
-                st.dataframe(df)
 
         col1, col2, col3  = st.columns(3)
 
@@ -147,19 +135,6 @@ def main():
                                 disabled = False,
                                 horizontal = True,
                         )
-        
-        # MentHlth = st.radio(label= "¿Cómo evaluarías tu estado general de salud mental del 1 al 5?",
-        #                         options = ("1", "2", "3", "4", "5"), 
-        #                         index = 1,
-        #                         disabled = False,
-        #                         horizontal = True,
-        #                 )
-        # PhysHlth = st.radio(label= "¿Cómo evaluarías tu estado general de salud física del 1 al 5?",
-        #                         options = ("1", "2", "3", "4", "5"), 
-        #                         index = 1,
-        #                         disabled = False,
-        #                         horizontal = True,
-        #                 )
         with  col12:
                DiffWalk = st.radio(label= "¿Tienes dificultades para caminar?",
                                 options = ("Si", "No"),  
@@ -169,52 +144,64 @@ def main():
                         )
         col13, col14, col15  = st.columns(3)
         with col13:
-               Sex = st.radio(label= "Selecciona tu sexo",
-                                options = ("Mujer", "Hombre"), 
-                                index = 0,
-                                disabled = False,
-                                horizontal = True,
-                        )
-        with col14:
-                BMI = st.number_input(label = "¿Cúal es tu índice de masa corporal?", 
-                                # placeholder = "introduce tu IMC",
-                                  value = 24
-                        )
-        with col15:
-               Age = st.number_input(label = "¿Cuántos años tienes?", 
-                        #     placeholder = "introduce tu edad",
-                              value = 30
-                        )
-        col16, col17, col18 = st.columns(3)
-        with col17:
-               GenHlth = st.radio(label= "¿Cómo evaluarías tu estado general de salud del 1 al 5?",
-                                options = ("1", "2", "3", "4", "5"), 
-                                index = 1,
-                                disabled = False,
-                                horizontal = True,
-                        )
-        with col18:
-               Education = st.radio(label= "¿Cúal es tu nivel educativo del 1 al 6?",
-                                options = ("1", "2", "3", "4", "5", "6"), 
-                                index = 1,
-                                disabled = False,
-                                horizontal = True,
-                        )
-        with col16:   
                NoDocbcCost = st.radio(label= "¿Puedes pagar la asistencia médica?",
                                 options = ("Si", "No"), 
                                 index = 1,
                                 disabled = False,
                                 horizontal = True,
                         )
-        
-        Income = st.radio(label= "¿Cúal es tu franja de ingresos salariales del 1 al 8?",
+        with col14:
+               Sex = st.radio(label= "Selecciona tu sexo",
+                                options = ("Mujer", "Hombre"), 
+                                index = 0,
+                                disabled = False,
+                                horizontal = True,
+                        )
+        with col15:
+             Age = st.number_input(label = "¿Cuántos años tienes?", 
+                        #     placeholder = "introduce tu edad",
+                              value = 30
+                        ) 
+        col16, col17, col18 = st.columns(3)
+        with col16:
+               GenHlth = st.radio(label= "¿Cómo evaluarías tu estado general de salud del 1 al 5?",
+                                options = ("1", "2", "3", "4", "5"), 
+                                index = 1,
+                                disabled = False,
+                                horizontal = True,
+                        )
+        with col17:
+               Education = st.radio(label= "¿Cúal es tu nivel educativo del 1 al 6?",
+                                options = ("1", "2", "3", "4", "5", "6"), 
+                                index = 1,
+                                disabled = False,
+                                horizontal = True,
+                        )
+        with col18:
+               Income = st.radio(label= "¿Cúal es tu franja de ingresos salariales del 1 al 8?",
                                 options = ("1", "2", "3", "4", "5", "6", "7", "8"), 
                                 index = 3,
                                 disabled = False,
                                 horizontal = True,
                         )
-
+        col19, col20, col21 = st.columns(3)
+        with col19:
+               peso = st.number_input(label = "Calculadora IMC: Introduce tu peso en kg", 
+                              value = 60
+                        ) 
+        with col20:
+               altura = st.number_input(label = "Calculadora IMC: Introduce tu altura en cm",
+                              value = 160
+                        ) 
+        IMC = round(peso/(altura/100)**2)
+        with col21:
+               BMI = st.number_input(label = "Resultado IMC tu índice de masa corporal es:", 
+                                # placeholder = "introduce tu IMC",
+                                  value = IMC
+                        )
+               
+        
+        
         data = [HighBP, HighChol, CholCheck, BMI, Smoker, Stroke, HeartDiseaseorAttack, PhysActivity, Fruits, Veggies, HvyAlcoholConsump, AnyHealthcare, NoDocbcCost, GenHlth, DiffWalk, Sex, Age, Education, Income ]
        
         for i in range(len(data)):
@@ -250,11 +237,11 @@ def main():
         else:
                st.success("Según nuestro modelo **no estás en riesgo** de tener diabetes")
         
-        col19, col20 = st.columns(2)
-        with col19:
+        col22, col23 = st.columns(2)
+        with col22:
                 st.write("% probabilidad de no padecer diabetes:")
                 st.write(int(model.predict_proba(df_usuario)[0][0]*100))
-        with col20:
+        with col23:
                 st.write("% probabilidad de ser diabético:")
                 st.write(int(model.predict_proba(df_usuario)[0][1]*100))
 
