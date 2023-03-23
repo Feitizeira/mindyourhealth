@@ -12,22 +12,22 @@ def main():
 
     with tab0:
         st.image("data/drugs.png")
-        st.write("Análisis de enfermedades y medicamentos con streamlit, power BI, sklearn.")
+        st.write("Análisis de enfermedades y medicamentos con **:blue[streamlit]**, **:blue[power BI]** y **:blue[sklearn]**.")
 
         st.markdown("""Los datos de este proyectos proceden de diversas fuentes públicas : 
                           [**CIMA**](https://cima.aemps.es/cima/publico/home.html), [**Drugs**](https://drugs.com), [**INE**](https://datos.gob.es/es/catalogo?publisher_display_name=Instituto+Nacional+de+Estad%C3%ADstica)""")
 
-        st.write("""**`Estudio de Enfermedades con power BI`**  muestra estadísticas sobre enfermedades.""")
+        st.write("""**`Estudio de Enfermedades con power BI`**  muestra estadísticas sobre enfermedades diagnosticadas en España, estancias y altas hospitalarias.""")
 
         st.write("""**`Predicción de  Diabetes con Machine Learning`**  calcula su probabilidad de contraer diabetes contestando una pequeña encuesta sobre sus hábitos de vida saludables con una sensibilidad del 90%.""")
 
-        st.write("""**`Drug Analyzer`**  proporciona información sobre medicamentos.""")
+        st.write("""**`Drug Analyzer`**  proporciona información sobre medicamentos para tratar diferentes enfermedades.""")
 
         st.error("""Nota: toda la información proporcionada por esta app es orientativa y basada en datos públicos. Recuerde que ante cualquier duda siempre debe acudir a su médico de cabecera.""")
 
     with tab1:
 
-        st.components.v1.html('''<iframe title="gastos_comunidad" width="880" height="550" src="https://app.powerbi.com/view?r=eyJrIjoiNDVmMGNiZGItZjZhMS00MDQ5LWIwMGEtNjE2ZWIyYjYxMThjIiwidCI6IjYzOTc4MWU1LWJjMmYtNGE3Ni04YmY1LTJiNTg0ZDcxN2U5ZCIsImMiOjl9&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>''', width = 880, height = 580)
+        st.components.v1.html('''<iframe title="Diagnosticos" width="880" height="550" src="https://app.powerbi.com/reportEmbed?reportId=cab4131a-7926-4dfb-99b5-f688488d5a68&autoAuth=true&ctid=639781e5-bc2f-4a76-8bf5-2b584d717e9d&filterPaneEnabled=false&navContentPaneEnabled=false" frameborder="0" allowFullScreen="true"></iframe>''', width = 1000, height = 800)
  
     with tab2:
         st.header("ML Predicción de Diabetes según Encuesta")
