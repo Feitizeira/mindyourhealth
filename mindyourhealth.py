@@ -38,7 +38,7 @@ def main():
         st.caption("Recuerda que esta app es sólo informativa, ante cualquier duda médica siempre debes acudir a tu médico de cabecera o consultar a un profesional.")
         st.caption("Modelo de ML RandomForest con un Recall del 89%")
                  
-        df = pd.read_csv("../data/diabetes_012_health_indicators_BRFSS2015.csv")
+        df = pd.read_csv("data/diabetes_012_health_indicators_BRFSS2015.csv")
         df.drop_duplicates(inplace=True)
         df=df[df['BMI']<50]
         # eliminamos la población con diagnóstico de prediabetes
