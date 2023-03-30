@@ -4,3 +4,4 @@ streamlit==1.20.0
 urllib3_secure_extra==0.1.0
 Pillow==9.4.0
 pyOpenSSL==23.1.1
+openpyxl==3.1.2
