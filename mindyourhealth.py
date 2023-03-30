@@ -9,7 +9,7 @@ st.set_page_config(**PAGE_CONFIG)
 
 def main():
 
-    st.image("data/portada.png", width=880)
+    st.image("data/portada.png")
 
     tab0, tab1, tab2, tab3, tab4 = st.tabs(["Intro Health Watcher", "Estudio de Enfermedades con power BI", "Predicción de  Diabetes con Machine Learning", "Drug Analyzer", "Recomendaciones"])
 
